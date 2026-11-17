@@ -15,7 +15,31 @@ This project is a home SOC lab built using VMware Workstation. It demonstrates t
 
 ## Lab Architecture
 
-See `01-Architecture/wazuh-soc-architecture.mmd` for the architecture diagram source.
+The following diagram illustrates the virtual SOC environment and its main components.
+
+```mermaid
+flowchart TB
+    H["Windows 11 Host"]
+    V["VMware Workstation 17.6.2"]
+    N["VMware NAT Network"]
+
+    H --> V
+    V --> N
+
+    N --> U["Ubuntu Server 24.04.5<br/>Wazuh All-in-One"]
+    N --> W["Windows 10 Pro<br/>Wazuh Agent"]
+    N -.-> K["Kali Linux VM<br/>Future testing"]
+
+    U --> M["Wazuh Manager"]
+    U --> I["Wazuh Indexer"]
+    U --> D["Wazuh Dashboard"]
+
+    W -->|"Security and RDP events"| M
+    M --> I
+    I --> D
+```
+
+The editable architecture source is available in the `Architecture` folder.
 
 ## Security Investigations
 
@@ -25,6 +49,7 @@ See `01-Architecture/wazuh-soc-architecture.mmd` for the architecture diagram so
 - Identified Windows Security Event ID 4625.
 - Observed Wazuh rule ID 60122.
 - Investigated the target account and logon details.
+- Analyzed the failure status and substatus codes.
 
 ### 2. Remote Desktop Session Monitoring
 
@@ -35,11 +60,15 @@ See `01-Architecture/wazuh-soc-architecture.mmd` for the architecture diagram so
 
 ## Evidence
 
-Screenshots are stored in the `02-Screenshots` folder.
+Screenshots documenting the lab setup and investigations are stored in the `Screenshots` folder.
 
 ## Configuration
 
-Selected configuration files and notes are stored in `03-Configuration`.
+Configuration notes and selected configuration files will be documented in the `Configuration` folder.
+
+## Investigation Reports
+
+Detailed investigation reports will be added to the `Investigations` folder.
 
 ## Disclaimer
 
