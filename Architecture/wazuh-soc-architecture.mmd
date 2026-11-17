@@ -1,0 +1,19 @@
+flowchart TB
+    H["Windows 11 Host"]
+    V["VMware Workstation 17.6.2"]
+    N["VMware NAT Network"]
+
+    H --> V
+    V --> N
+
+    N --> U["Ubuntu Server 24.04.5<br/>Wazuh All-in-One"]
+    N --> W["Windows 10 Pro<br/>Wazuh Agent"]
+    N -.-> K["Kali Linux VM<br/>Future testing"]
+
+    U --> M["Wazuh Manager"]
+    U --> I["Wazuh Indexer"]
+    U --> D["Wazuh Dashboard"]
+
+    W -->|"Security and RDP events"| M
+    M --> I
+    I --> D
